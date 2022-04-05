@@ -1,6 +1,8 @@
+import { AppSeguro } from './components/AppSeguto'
+
 function App () {
   return (
-    <h1>Inicio</h1>
+    <AppSeguro />
   )
 }
 
