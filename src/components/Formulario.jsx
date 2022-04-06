@@ -24,10 +24,10 @@ export const Formulario = () => {
     <>
       {error && <Error />}
       <form onSubmit={handleSubmit}>
-        <div className=' my5 '>
+        <div className='my-5'>
           <label className=' block mb-3 font-bold text-gray-400 uppercase'>Marca</label>
 
-          <select name='marca' className=' w-full bg-white border border-gray-200' onChange={e => handleChangeDatos(e)} value={datos.marca}>
+          <select name='marca' className=' w-full bg-white border border-gray-200 p-3' onChange={e => handleChangeDatos(e)} value={datos.marca}>
             <option value=''>-- Selecciona Marca --</option>
             {MARCAS.map(marca => (
               <option
@@ -40,10 +40,10 @@ export const Formulario = () => {
           </select>
         </div>
 
-        <div className=' my5 '>
+        <div className=' my-5 '>
           <label className=' block mb-3 font-bold text-gray-400 uppercase'>Año</label>
 
-          <select name='year' className=' w-full bg-white border border-gray-200' onChange={e => handleChangeDatos(e)} value={datos.year}>
+          <select name='year' className=' w-full bg-white border border-gray-200 p-3' onChange={e => handleChangeDatos(e)} value={datos.year}>
             <option value=''>-- Selecciona Año --</option>
             {YEARS.map(year => (
               <option
@@ -56,8 +56,8 @@ export const Formulario = () => {
           </select>
         </div>
 
-        <div className=' my5 '>
-          <label className=' block mb-3 font-bold text-gray-400 uppercase '>Elige un plan</label>
+        <div className=' my-5 '>
+          <label className=' block mb-3 font-bold text-gray-400 uppercase'>Elige un plan</label>
 
           <div className=' flex gap-3 items-center'>
             {PLANES.map(plan => (
