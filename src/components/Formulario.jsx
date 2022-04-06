@@ -1,14 +1,33 @@
 import { Fragment } from 'react'
 import { MARCAS, YEARS, PLANES } from '../constants'
+import useCotizador from '../hooks/useCotizador'
+import { Error } from './Error'
 
 export const Formulario = () => {
+  const { handleChangeDatos, datos, error, setError, cotizarSeguro } = useCotizador()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (Object.values(datos).includes('')) {
+      setError('Todos los campos con obligatorios')
+      return
+    }
+
+    setError('')
+    // TODO: Cotizar
+
+    cotizarSeguro()
+  }
+
   return (
     <>
-      <form>
+      {error && <Error />}
+      <form onSubmit={handleSubmit}>
         <div className=' my5 '>
           <label className=' block mb-3 font-bold text-gray-400 uppercase'>Marca</label>
 
-          <select name='marca' className=' w-full bg-white border border-gray-200'>
+          <select name='marca' className=' w-full bg-white border border-gray-200' onChange={e => handleChangeDatos(e)} value={datos.marca}>
             <option value=''>-- Selecciona Marca --</option>
             {MARCAS.map(marca => (
               <option
@@ -24,7 +43,7 @@ export const Formulario = () => {
         <div className=' my5 '>
           <label className=' block mb-3 font-bold text-gray-400 uppercase'>Año</label>
 
-          <select name='ano' className=' w-full bg-white border border-gray-200'>
+          <select name='year' className=' w-full bg-white border border-gray-200' onChange={e => handleChangeDatos(e)} value={datos.year}>
             <option value=''>-- Selecciona Año --</option>
             {YEARS.map(year => (
               <option
@@ -44,7 +63,7 @@ export const Formulario = () => {
             {PLANES.map(plan => (
               <Fragment key={plan.id}>
                 <label>{plan.nombre}</label>
-                <input type='radio' name='plan' value={plan.id} />
+                <input type='radio' name='plan' value={plan.id} onChange={e => handleChangeDatos(e)} />
               </Fragment>
             ))}
           </div>
